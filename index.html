@@ -35,7 +35,7 @@
 	    <link href="css/bootstrap-responsive.css" rel="stylesheet">
         <script type="text/javascript">
             // based on goblin's p2pool-stats project
-			var period = "hour";
+			var period = "day";
 
 			function LoadData()
 			{
@@ -244,8 +244,8 @@
 				  <div class="navbar-inner">
 				    <a class="brand" href="javascript:void(0)">Scale</a>
 				    <ul class="nav" id="scale_menu">
-				      <li id="scale1"class="active"><a href="javascript:ChangeCurrentPeriod('hour', 'scale1');">Hour</a></li>
-				      <li id="scale2"><a href="javascript:ChangeCurrentPeriod('day', 'scale2');">Day</a></li>
+				      <li id="scale1"><a href="javascript:ChangeCurrentPeriod('hour', 'scale1');">Hour</a></li>
+				      <li id="scale2" class="active"><a href="javascript:ChangeCurrentPeriod('day', 'scale2');">Day</a></li>
 				      <li id="scale3"><a href="javascript:ChangeCurrentPeriod('week', 'scale3');">Week</a></li>
 				      <li id="scale4"><a href="javascript:ChangeCurrentPeriod('month', 'scale4');">Month</a></li>
 				      <li id="scale5"><a href="javascript:ChangeCurrentPeriod('year', 'scale5');">Year</a></li>
