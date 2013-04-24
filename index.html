@@ -198,6 +198,14 @@
                 ],1000,300);
 
 		}
+
+			function ChangeCurrentPeriod(p_Period, p_Sender)
+			{
+				period=p_Period;
+				UpdateData();
+				$('#scale_menu li').removeClass('active');
+				$('#' + p_Sender).addClass('active');
+			}
         </script>
     </head>
     <body>
@@ -237,11 +245,11 @@
 				  <div class="navbar-inner">
 				    <a class="brand" href="javascript:void(0)">Scale</a>
 				    <ul class="nav" id="scale_menu">
-				      <li id="scale1"class="active"><a href="javascript:period='hour';UpdateData();$('#scale_menu li').removeClass('active');$('#scale1').addClass('active');">Hour</a></li>
-				      <li id="scale2"><a href="javascript:period='day';UpdateData();$('#scale_menu li').removeClass('active');$('#scale2').addClass('active');">Day</a></li>
-				      <li id="scale3"><a href="javascript:period='week';UpdateData();$('#scale_menu li').removeClass('active');$('#scale3').addClass('active');">Week</a></li>
-				      <li id="scale4"><a href="javascript:period='month';UpdateData();$('#scale_menu li').removeClass('active');$('#scale4').addClass('active');">Month</a></li>
-				      <li id="scale5"><a href="javascript:period='year';UpdateData();$('#scale_menu li').removeClass('active');$('#scale5').addClass('active');">Year</a></li>
+				      <li id="scale1"class="active"><a href="javascript:ChangeCurrentPeriod('hour', 'scale1');">Hour</a></li>
+				      <li id="scale2"><a href="javascript:ChangeCurrentPeriod('day', 'scale2');">Day</a></li>
+				      <li id="scale3"><a href="javascript:ChangeCurrentPeriod('week', 'scale3');">Week</a></li>
+				      <li id="scale4"><a href="javascript:ChangeCurrentPeriod('month', 'scale4');">Month</a></li>
+				      <li id="scale5"><a href="javascript:ChangeCurrentPeriod('year', 'scale5');">Year</a></li>
 				    </ul>
 				  </div>
 				</div>
