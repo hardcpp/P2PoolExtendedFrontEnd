@@ -200,13 +200,21 @@
 
 		}
 
-			function ChangeCurrentPeriod(p_Period, p_Sender)
+		function ChangeCurrentPeriod(p_Period, p_Sender)
+		{
+			period=p_Period;
+			UpdateData();
+			$('#scale_menu li').removeClass('active');
+			$('#' + p_Sender).addClass('active');
+		}
+
+		function AutoRefresh()
+		{
+			if($("#autorefresh").prop('checked'))
 			{
-				period=p_Period;
 				UpdateData();
-				$('#scale_menu li').removeClass('active');
-				$('#' + p_Sender).addClass('active');
 			}
+		}
         </script>
     </head>
     <body>
@@ -241,7 +249,7 @@
 	  	<div class="tab-pane active" id="stats">
 			<center>
 				<div class="well" style="width:1000px">
-				<div class="navbar" style="width: 440px;">
+				<div class="navbar" style="width: 560px;">
 				  <div class="navbar-inner">
 				    <a class="brand" href="javascript:void(0)">Scale</a>
 				    <ul class="nav" id="scale_menu">
@@ -250,6 +258,7 @@
 				      <li id="scale3"><a href="javascript:ChangeCurrentPeriod('week', 'scale3');">Week</a></li>
 				      <li id="scale4"><a href="javascript:ChangeCurrentPeriod('month', 'scale4');">Month</a></li>
 				      <li id="scale5"><a href="javascript:ChangeCurrentPeriod('year', 'scale5');">Year</a></li>
+				      <li><input type="checkbox" name="autorefresh" id="autorefresh" /><label for="autorefresh">Auto-refresh</label></li>
 				    </ul>
 				  </div>
 				</div>
@@ -625,7 +634,7 @@
 		$(document).ready(function() {
 			LoadData();
 		  	UpdateData();
-			setInterval("UpdateData()", 5 * 1000);
+			setInterval("AutoRefresh()", 5 * 1000);
 		    	$('#myTab a:first').tab('show');
 		});
         </script>
