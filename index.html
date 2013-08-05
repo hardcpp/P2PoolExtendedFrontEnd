@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
     <head>
@@ -97,6 +97,8 @@
 			    fill('/web/verified_tails', '#verified_tails');
 			    fill('/web/tails', '#tails');
 			}
+                        var plot1;
+                        var plot2;
 			function UpdateData()
 			{
 				function values(o){ res = []; for(var x in o) res.push(o[x]); return res; }
@@ -143,8 +145,10 @@
 								['Local speed', local],['Local dead speed', local_dead], ['Global speed', global_stats.pool_hash_rate]
 							  ];
 								
-							  $("#SpeedChart").html("");
-							 jQuery.jqplot ('SpeedChart', [data], 
+                                                          if (plot2) {plot2.destroy();}
+	                                                  $("#targetPlot2").remove();
+	                                                  $("#SpeedChart").append("<div id='targetPlot2'></div>");
+							  plot2 = jQuery.jqplot ('targetPlot2', [data],
 								{ 
 								  seriesDefaults: {
 									// Make this a pie chart.
@@ -166,9 +170,10 @@
 					['Good', local_stats.shares.total - (local_stats.shares.orphan + local_stats.shares.dead)],['Dead', local_stats.shares.dead], ['Orphaned', local_stats.shares.orphan]
 				  ];
 				  				
-
-				  $("#ShareChart").html("");
-				  var plot1 = jQuery.jqplot ('ShareChart', [data], 
+	                          if (plot1) {plot1.destroy();}
+	                          $("#targetPlot1").remove();
+                                  $("#ShareChart").append("<div id='targetPlot1'></div>");
+	                          plot1 = jQuery.jqplot ('targetPlot1', [data],
 					{ 
 					  seriesDefaults: {
 						// Make this a pie chart.
