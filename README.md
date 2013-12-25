@@ -6,7 +6,7 @@ How to install
 ====================
 Put the files in the web-static folder of your P2Pool node installation.
 
-Edit js/main.js and add your contact email.
+Edit js/settings.js and add your contact email.
 
 Edit index.html and change the Litecoin-icon and Litecoin-large to the images you want (or remove them completely).
 
