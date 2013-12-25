@@ -1,8 +1,6 @@
 var period = "day";
-var contactAddress = "contact@emailaddress.com";
 
 function LoadData() {
-  $("#mailto").attr("href", 'mailto:' + contactAddress);
   $("#blocks").html("<tr><th>ID</th><th>Time</th><th>Hash and explorer link</th><th>Share</th></tr>");
   $("#payouts").html("<tr><th>Address</th><th>Amount in <span class=\"symbol\"></span></th></tr>");
   function values(o){ res = []; for(var x in o) res.push(o[x]); return res; }

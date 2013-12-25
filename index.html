@@ -3,7 +3,7 @@
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
   <title>P2Pool</title>
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-  <link href="css/bootstrap.css" rel="stylesheet" />
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
   <link href="css/jquery.jqplot.min.css" rel="stylesheet" />
   <link href="css/bootstrap-responsive.css" rel="stylesheet" />
   <style type="text/css">
@@ -21,6 +21,7 @@
   </style>
   <script type="text/javascript" src="js/d3.v2.min.js"></script>
   <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script type="text/javascript" src="js/settings.js"></script>
   <script type="text/javascript" src="js/bootstrap.min.js"></script>
   <script type="text/javascript" src="js/jquery.jqplot.min.js"></script>
   <script type="text/javascript" src="js/jqplot.pieRenderer.min.js"></script>
@@ -39,8 +40,8 @@
         <a class="brand" href="/">P2Pool (<span class="symbol upper"></span>)</a>
         <div class="nav-collapse collapse">
           <ul class="nav">
-            <li class="active"><a href="index.html">Stats</a></li>
-            <li><a href="graphs.html">Graph</a></li>
+            <li class="active"><a href="index.html">Pool stats</a></li>
+            <li><a href="graphs.html">Graphs</a></li>
             <li><a id="mailto" href="">Contact</a></li>
           </ul>
         </div><!--/.nav-collapse -->
@@ -48,10 +49,10 @@
     </div>
   </div>
   <ul class="nav nav-tabs" id="myTab" style="margin-top:10px;">
-    <li class="active" style="margin-left:20px;"><a href="#stats" data-toggle="tab"><i class="icon-user"></i>&nbsp;Pool stats</a></li>
-    <li><a href="#shares" data-toggle="tab"><i class="icon-refresh"></i>&nbsp;Share explorer</a></li>
-    <li><a href="#lastblocks" data-toggle="tab"><i class="icon-list-alt"></i>&nbsp;Last blocks</a></li>
-    <li><a href="#mainnodepayout" data-toggle="tab"><i class="icon-download-alt"></i>&nbsp;Payout</a></li>
+    <li class="active" style="margin-left:20px;"><a href="#stats" data-toggle="tab"><i class="icon-user"></i> Pool stats</a></li>
+    <li><a href="#shares" data-toggle="tab"><i class="icon-refresh"></i> Share explorer</a></li>
+    <li><a href="#lastblocks" data-toggle="tab"><i class="icon-list-alt"></i> Last blocks</a></li>
+    <li><a href="#mainnodepayout" data-toggle="tab"><i class="icon-download-alt"></i> Payout</a></li>
   </ul>
   <div class="tab-content">
     <div class="tab-pane active" id="stats">
@@ -124,14 +125,14 @@
     <div class="tab-pane" id="shares">
       <table class="table table-striped"><tbody>
         <tr>
-          <th>Best share</th><th>Verified heads</th><th>Heads</th><th>Verified tails</th>
+          <th>Best share</th><th>Verified heads</th><th>Heads</th><th>Verified tails</th><th>Tails</th>
         </tr><tr>
-          <td><span id="best_share"></span></td><td><span id="verified_heads"></span></td><td><span id="heads"></span></td><td><span id="verified_tails"></span></td>
+          <td><span id="best_share"></span></td><td><span id="verified_heads"></span></td><td><span id="heads"></span></td><td><span id="verified_tails"></span></td><td><span id="tails"></span></td>
         </tr>
         <tr>
-          <th colspan="4">Tails</th>
+          <th colspan="5">Node shares</th>
         </tr><tr>
-          <td colspan="4"><span id="tails"></span></td>
+          <td colspan="5"><span id="node_shares"></span></td>
         </tr>
       </tbody></table>
     </div>
@@ -155,6 +156,7 @@
       UpdateData();
       setInterval("AutoRefresh()", 5 * 1000);
       $('#myTab a:first').tab('show');
+      fixContact();
     });
   </script>
 </body></html>
