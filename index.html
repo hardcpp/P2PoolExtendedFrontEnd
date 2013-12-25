@@ -4,8 +4,8 @@
   <title>P2Pool</title>
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
   <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <link href="css/bootstrap-responsive.min.css" rel="stylesheet" />
   <link href="css/jquery.jqplot.min.css" rel="stylesheet" />
-  <link href="css/bootstrap-responsive.css" rel="stylesheet" />
   <style type="text/css">
     line {
       shape-rendering:crispEdges;
@@ -30,7 +30,7 @@
 <body>
   <div class="navbar navbar-inverse navbar-fixed-top" style="position:relative;">
     <div class="navbar-inner">
-      <div class="container">
+      <div class="container" style="width:100%">
         <img alt="Litecoin icon" src="img/Litecoin-icon.png" style="float:left;height:40px;width:40px;" />
         <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
           <span class="icon-bar"></span>
@@ -83,7 +83,7 @@
           </tr>
           <tr>
             <td><h5>Shares</h5></td>
-            <td><span id="shares_total" class="label"></span> total (<span id="shares_orphan" class="label label-warning"></span> orphaned, <span id="shares_dead" class="label label-warning"></span> dead) Efficiency: <span class="label label-info" id="efficiency"></span></td>
+            <td><span id="shares_total" class="label"></span> total (<span id="shares_orphan" class="label label-warning"></span> orphaned, <span id="shares_dead" class="label label-warning"></span> dead)<br /><span class="label label-info" id="efficiency"></span> efficiency</td>
             <td></td>
             <td><h5>Payout if a block were found NOW</h5></td>
             <td><span id="payout_amount" class="label"></span> <span class="symbol"></span></td>
@@ -100,7 +100,7 @@
             <td><span id="uptime_days" class="label label-inverse"></span> (<span id="uptime_hours"></span> hours)</td>
             <td></td>
             <td><h5>Peers</h5></td>
-            <td><span id="peers_out"></span> out, <span id="peers_in"></span> in</td>
+            <td><span id="peers_out" class="label label-info"></span> out, <span id="peers_in" class="label label-info"></span> in</td>
           </tr>
           <tr>
             <td><h5>Current block value</h5></td>
@@ -132,7 +132,7 @@
         <tr>
           <th colspan="5">Node shares</th>
         </tr><tr>
-          <td colspan="5"><span id="node_shares"></span></td>
+          <td colspan="5"><span id="my_share_hashes"></span></td>
         </tr>
       </tbody></table>
     </div>

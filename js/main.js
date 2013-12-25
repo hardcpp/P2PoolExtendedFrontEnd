@@ -58,6 +58,7 @@ function LoadData() {
   fill('/web/heads', '#heads');
   fill('/web/verified_tails', '#verified_tails');
   fill('/web/tails', '#tails');
+  fill('/web/my_share_hashes', '#my_share_hashes');
 }
 
 var plot1;
