@@ -160,7 +160,7 @@ function UpdateData() {
   plot_later(d3.select("#main-local"), "H/s", "H", [
     {"url": "/web/graph_data/local_hash_rate/last_" + period, "color": "#00f", "label": "Total"},
     {"url": "/web/graph_data/local_dead_hash_rate/last_" + period, "color": "#f00", "label": "Dead"}
-  ],900,300);
+  ],1000,300);
 }
 
 function ChangeCurrentPeriod(p_Period, p_Sender) {
