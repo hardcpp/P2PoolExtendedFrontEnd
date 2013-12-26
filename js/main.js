@@ -3,6 +3,8 @@ var period = "day";
 function LoadData() {
   $("#blocks").html("<tr><th>ID</th><th>Time</th><th>Hash and explorer link</th><th>Share</th></tr>");
   $("#payouts").html("<tr><th>Address</th><th>Amount in <span class=\"symbol\"></span></th></tr>");
+  $("#miners").html("<tr><th>Miner</th><th>Hashrate</th><th>Dead hashrate</th></tr>");
+
   function values(o){ res = []; for(var x in o) res.push(o[x]); return res; }
 
   d3.json('/web/version', function(version) {
@@ -138,13 +140,27 @@ function UpdateData() {
       }, 
       legend: { show:true, location: 'e' }
     });
+    /// Active miners
+    var miners = [];
+    for (var i in local_stats.miner_hash_rates) {
+      var miner = new Object;
+      miner.miner_name=i;
+      miner.hash=local_stats.miner_hash_rates[i];
+      miners.push(miner)
+    };
+    /// $('#miners').empty();
+    var tr = d3.select("#miners").selectAll().data(miners).enter().append('tr');
+    tr.append('td').text(function(miner){return miner.miner_name});
+    tr.append('td').text(function(miner){return d3.format('.3s')(miner.hash) +'H/s'});
+    tr.append('td').text(function(miner){return local_stats.miner_dead_hash_rates[miner.miner_name] != null ? d3.format('.3s')(local_stats.miner_dead_hash_rates[miner.miner_name]) + 'H/s' : '0H/s'});
   });
+
 
   /// Pool speed graph
   plot_later(d3.select("#main-local"), "H/s", "H", [
-    {"url": "/web/graph_data/local_hash_rate/last_" + period, "color": "#0000FF", "label": "Total"},
-    {"url": "/web/graph_data/local_dead_hash_rate/last_" + period, "color": "#FF0000", "label": "Dead"}
-  ],1000,300);
+    {"url": "/web/graph_data/local_hash_rate/last_" + period, "color": "#00f", "label": "Total"},
+    {"url": "/web/graph_data/local_dead_hash_rate/last_" + period, "color": "#f00", "label": "Dead"}
+  ],900,300);
 }
 
 function ChangeCurrentPeriod(p_Period, p_Sender) {

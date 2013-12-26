@@ -16,7 +16,7 @@ function get_area_mean(data) {
   var top = 0;
   var bottom = 0;
   for(var i = 0; i < data.length; i++) {
-    if(data[i][1] == null) continue; // no data for bin
+    if(data[i][1] == null) continue;
     top += data[i][1] * data[i][2];
     bottom += data[i][2];
   }
@@ -254,7 +254,7 @@ function plot(g, unit, total_unit, lines,ww,hh,stack) {
     .attr("text-anchor", "middle");
 }
 
-function plot_later(g, unit, total_unit, lines,w,h,stack) { // takes lines with url attribute instead of data attribute
+function plot_later(g, unit, total_unit, lines,w,h,stack) {
   var callbacks_left = lines.length;
   lines.map(function(line) {
     d3.json(line.url, function(line_data) {

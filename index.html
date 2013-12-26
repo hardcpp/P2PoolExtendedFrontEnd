@@ -3,9 +3,8 @@
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
   <title>P2Pool</title>
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/2.3.1/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/2.3.1/css/bootstrap-responsive.min.css" />
-  <link href="css/jquery.jqplot.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/jquery.jqplot.min.css" />
   <style type="text/css">
     line {
       shape-rendering:crispEdges;
@@ -31,7 +30,7 @@
   <div class="navbar navbar-inverse navbar-fixed-top" style="position:relative;">
     <div class="navbar-inner">
       <div class="container" style="width:100%">
-        <img alt="Litecoin icon" src="img/Litecoin-icon.png" style="float:left;height:40px;width:40px;" />
+        <img alt="Litecoin icon" src="img/Litecoin-icon.png" style="float:left;height:40px;margin-right:4px;width:40px;" />
         <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
@@ -52,11 +51,12 @@
     <li class="active" style="margin-left:20px;"><a href="#stats" data-toggle="tab"><i class="icon-user"></i> Pool stats</a></li>
     <li><a href="#shares" data-toggle="tab"><i class="icon-refresh"></i> Share explorer</a></li>
     <li><a href="#lastblocks" data-toggle="tab"><i class="icon-list-alt"></i> Last blocks</a></li>
+    <li><a href="#activeminers" data-toggle="tab"><i class="icon-flag"></i> Active miners</a></li>
     <li><a href="#mainnodepayout" data-toggle="tab"><i class="icon-download-alt"></i> Payout</a></li>
   </ul>
   <div class="tab-content">
-    <div class="tab-pane active" id="stats">
-      <div class="well" style="margin:0 auto;width:1000px">
+    <div class="tab-pane fade in active" id="stats">
+      <div class="well" style="margin:0 auto;width:900px">
         <div class="navbar" style="margin:0 auto;width:560px;">
           <div class="navbar-inner">
             <a class="brand" href="javascript:void(0)">Scale</a>
@@ -72,8 +72,8 @@
         </div>
         <svg id="main-local" style="background:url('img/Litecoin-large.png') no-repeat center;"></svg>
       </div>
-      <div class="well" style="margin:0 auto;margin-top:20px;width:1000px">
-        <table id="specs" class="table table-striped" style="width: 1000px"><tbody>
+      <div class="well" style="margin:0 auto;margin-top:20px;width:900px">
+        <table id="specs" class="table table-striped" style="width:900px"><tbody>
           <tr>
             <td><h5>Local rate</h5></td>
             <td><span id="local_rate" class="label"></span> (<span id="local_doa"></span> DOA)</td>
@@ -111,18 +111,18 @@
           </tr>
         </tbody></table>
       </div>
-      <div style="margin:0 auto;margin-top:20px;width:1040px;">
-        <div class="well" style="float:left;width:460px;">
+      <div style="margin:0 auto;margin-top:20px;width:940px;">
+        <div class="well" style="float:left;width:410px;">
           <h4 style="text-align:center;">Local shares</h4>
           <div id="ShareChart" style="height:300px;margin:0 auto;width:400px;"></div>
         </div>
-        <div class="well" style="float:right;width:460px;">
+        <div class="well" style="float:right;width:410px;">
           <h4 style="text-align:center;">Global pool speed</h4>
           <div id="SpeedChart" style="height:300px;margin:0 auto;width:400px;"></div>
         </div>
       </div>
     </div>
-    <div class="tab-pane" id="shares">
+    <div class="tab-pane fade" id="shares">
       <table class="table table-striped"><tbody>
         <tr>
           <th>Best share</th><th>Verified heads</th><th>Heads</th><th>Verified tails</th><th>Tails</th>
@@ -136,13 +136,17 @@
         </tr>
       </tbody></table>
     </div>
-    <div class="tab-pane" id="lastblocks">
+    <div class="tab-pane fade" id="lastblocks">
       <table id="blocks" class="table table-striped table-hover">
       </table>
     </div>
-    <div class="tab-pane" id="mainnodepayout">
-      <table class="table table-striped table-hover" id="payouts">
+    <div class="tab-pane fade" id="activeminers">
+      <table id="miners" class="table table-striped"><tbody>
       </table>
+    </div>
+    <div class="tab-pane fade" id="mainnodepayout">
+      <table id="payouts" class="table table-striped table-hover"><tbody>
+      </tbody></table>
     </div>
   </div>
   <div style="border-top: 1px solid #ddd;padding:8px;text-align:center;">
