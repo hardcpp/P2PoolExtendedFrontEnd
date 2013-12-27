@@ -1,5 +1,5 @@
-var siteName = "P2Pool Consortium's P2Pool";
-var contactAddress = "contact@emailaddress.com";
+var siteTitle = "P2Pool Consortium P2Pool";
+var contactAddress = "contact@website.com";
 
 function fixContact() {
   $("#mailto").attr("href", 'mailto:' + contactAddress);
