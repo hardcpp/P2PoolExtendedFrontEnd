@@ -1,5 +1,5 @@
-var siteTitle = "LURKMORE Litecoin P2Pool";
-var contactAddress = "ltc-p2pool@lurkmore.com";
+var siteTitle = "P2Pool Consortium P2Pool";
+var contactAddress = "contact@email-address.com";
 
 function fixContact() {
   $("#mailto").attr("href", 'mailto:' + contactAddress);
