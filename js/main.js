@@ -98,6 +98,7 @@ function UpdateData() {
       d3.select('#pool_rate').text(d3.format('.3s')(global_stats.pool_hash_rate) + 'H/s');
       d3.select('#pool_stale').text(d3.format('.2p')(global_stats.pool_stale_prop));
       d3.select('#difficulty').text(d3.format('.3r')(global_stats.min_difficulty));
+      d3.select('#minerdiff').text(d3.format('.3r')(global_stats.min_difficulty * 65536));
 
       var time_to_block = local_stats.attempts_to_block/global_stats.pool_hash_rate;
       d3.select('#time_to_block').text(d3.format('.3r')(time_to_block/3600) + " hours");
