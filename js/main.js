@@ -153,6 +153,8 @@ function UpdateData() {
     tr.append('td').text(function(miner){return miner.miner_name});
     tr.append('td').text(function(miner){return d3.format('.3s')(miner.hash) +'H/s'});
     tr.append('td').text(function(miner){return local_stats.miner_dead_hash_rates[miner.miner_name] != null ? d3.format('.3s')(local_stats.miner_dead_hash_rates[miner.miner_name]) + 'H/s' : '0H/s'});
+
+    document.title=d3.format('.3s')(local) + 'H/s (' + d3.format('.2p')(local_dead/local) + ') | ' + local_stats.shares.total + ' shares | ' + siteTitle;
   });
 
 
