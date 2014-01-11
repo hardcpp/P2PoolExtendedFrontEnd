@@ -166,10 +166,6 @@ function UpdateData() {
   ],1000,300);
 }
 
-function fixContact() {
-  $("#mailto").attr("href", 'mailto:' + contactAddress);
-}
-
 function ChangeCurrentPeriod(p_Period, p_Sender) {
   period=p_Period;
   UpdateData();

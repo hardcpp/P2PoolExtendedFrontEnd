@@ -4,9 +4,9 @@ Extended front end web interface for P2Pool.
 
 How to install
 ====================
-Put the files in the web-static folder of your P2Pool node installation.
+Put these files in the web-static folder of your P2Pool node installation or use --recursive when cloning the p2pool repo.
 
-Edit js/settings.js to add your contact email and pool name.
+Edit conf/settings.js to add your contact email and pool name.
 
 Edit index.html to change the Litecoin-icon and Litecoin-large to the images you want (or remove them completely).
 
@@ -20,4 +20,4 @@ Donations
 
 Mine P2Pool today!
 ====================
-* <a href="http://p2pool.lurkmore.com/">LURKMORE P2Pool</a>
+* [LURKMORE P2Pool](http://p2pool.lurkmore.com/)
