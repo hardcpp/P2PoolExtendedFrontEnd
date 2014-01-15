@@ -149,7 +149,7 @@ function UpdateData() {
       miner.hash=local_stats.miner_hash_rates[i];
       miners.push(miner)
     };
-    $('#miners').empty();
+    $("#miners").html("<tr><th>Miner</th><th>Hashrate</th><th>Dead hashrate</th></tr>");
     var tr = d3.select("#miners").selectAll().data(miners).enter().append('tr');
     tr.append('td').text(function(miner){return miner.miner_name});
     tr.append('td').text(function(miner){return d3.format('.3s')(miner.hash) +'H/s'});
