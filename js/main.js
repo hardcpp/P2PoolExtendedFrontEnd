@@ -7,15 +7,15 @@ function LoadData() {
 
   function values(o){ res = []; for(var x in o) res.push(o[x]); return res; }
 
-  d3.json('/web/version', function(version) {
+  d3.json('../web/version', function(version) {
     d3.selectAll('#version').text(version);
   });
  
-  d3.json('/web/currency_info', function(currency_info) {
+  d3.json('../web/currency_info', function(currency_info) {
     d3.selectAll('.symbol').text(currency_info.symbol);
 
-    d3.json('/current_payouts', function(pays) {
-      d3.json('/payout_addr', function(addr) {
+    d3.json('../current_payouts', function(pays) {
+      d3.json('../payout_addr', function(addr) {
         d3.select('#payout_addr').text(addr);
         d3.select('#payout_amount').text(addr in pays ? pays[addr] : 0);
       });
@@ -31,7 +31,7 @@ function LoadData() {
       total_tr.append('td').text(d3.sum(arr, function(addr){return pays[addr]}).toFixed(8));
     });
 
-    d3.json('/recent_blocks', function(blocks) {
+    d3.json('../recent_blocks', function(blocks) {
       var tr = d3.select('#blocks').selectAll().data(blocks).enter().append('tr');
       tr.append('td').text(function(block){return block.number});
       tr.append('td').text(function(block){return new Date(1000*block.ts).toString()});
@@ -45,7 +45,7 @@ function LoadData() {
   $("#heads").html("");
   $("#verified_tails").html("");
   $("#tails").html("");
-  d3.json('/web/best_share_hash', function(c) {
+  d3.json('../web/best_share_hash', function(c) {
     d3.select('#best_share').append('a').attr('href', 'share.html#' + c).text(c.substr(-8));
   });
  
@@ -56,11 +56,11 @@ function LoadData() {
     });
   }
 
-  fill('/web/verified_heads', '#verified_heads');
-  fill('/web/heads', '#heads');
-  fill('/web/verified_tails', '#verified_tails');
-  fill('/web/tails', '#tails');
-  fill('/web/my_share_hashes', '#my_share_hashes');
+  fill('../web/verified_heads', '#verified_heads');
+  fill('../web/heads', '#heads');
+  fill('../web/verified_tails', '#verified_tails');
+  fill('../web/tails', '#tails');
+  fill('../web/my_share_hashes', '#my_share_hashes');
 }
 
 var plot1;
@@ -68,7 +68,7 @@ var plot2;
 function UpdateData() {
   function values(o){ res = []; for(var x in o) res.push(o[x]); return res; }
 
-  d3.json('/local_stats', function(local_stats) {
+  d3.json('../local_stats', function(local_stats) {
     d3.select('#peers_in').text(local_stats.peers.incoming);
     d3.select('#peers_out').text(local_stats.peers.outgoing);
 
@@ -94,7 +94,7 @@ function UpdateData() {
     d3.select('#time_to_share').text(d3.format('.3r')(time_to_share/3600) + " hours");
     d3.select('#time_to_share_minute').text(d3.format('.3r')(time_to_share / 60) + " ");
 
-    d3.json('/global_stats', function(global_stats) {
+    d3.json('../global_stats', function(global_stats) {
       d3.select('#pool_rate').text(d3.format('.3s')(global_stats.pool_hash_rate) + 'H/s');
       d3.select('#pool_stale').text(d3.format('.2p')(global_stats.pool_stale_prop));
       d3.select('#difficulty').text(d3.format('.3r')(global_stats.min_difficulty));
@@ -161,8 +161,8 @@ function UpdateData() {
 
   /// Pool speed graph
   plot_later(d3.select("#main-local"), "H/s", "H", [
-    {"url": "/web/graph_data/local_hash_rate/last_" + period, "color": "#00f", "label": "Total"},
-    {"url": "/web/graph_data/local_dead_hash_rate/last_" + period, "color": "#f00", "label": "Dead"}
+    {"url": "../web/graph_data/local_hash_rate/last_" + period, "color": "#00f", "label": "Total"},
+    {"url": "../web/graph_data/local_dead_hash_rate/last_" + period, "color": "#f00", "label": "Dead"}
   ],1000,300);
 }
 
