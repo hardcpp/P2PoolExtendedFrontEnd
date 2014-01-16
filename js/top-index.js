@@ -1,4 +1,5 @@
 var period = "day";
+var coinSymbol = "N/A";
 
 function LoadData() {
   $("#blocks").html("<tr><th>ID</th><th>Time</th><th>Hash and explorer link</th><th>Share</th></tr>");
@@ -13,13 +14,9 @@ function LoadData() {
  
   d3.json('../web/currency_info', function(currency_info) {
     d3.selectAll('.symbol').text(currency_info.symbol);
+    coinSymbol = new String(currency_info.symbol);
 
     d3.json('../current_payouts', function(pays) {
-      d3.json('../payout_addr', function(addr) {
-        d3.select('#payout_addr').text(addr);
-        d3.select('#payout_amount').text(addr in pays ? pays[addr] : 0);
-      });
-
       var arr = []; for(var i in pays) arr.push(i); arr.sort(function(a, b){return pays[b] - pays[a]});
 
       var tr = d3.select('#payouts').selectAll().data(arr).enter().append('tr');
@@ -149,13 +146,14 @@ function UpdateData() {
       miner.hash=local_stats.miner_hash_rates[i];
       miners.push(miner)
     };
-    $("#miners").html("<tr><th>Miner</th><th>Hashrate</th><th>Dead hashrate</th></tr>");
+    $("#miners").html('<tr><th>Miner</th><th style="width:175px;">Hashrate</th><th style="width:175px;">Dead hashrate</th><th style="width:175px;">% dead</th></tr>');
     var tr = d3.select("#miners").selectAll().data(miners).enter().append('tr');
     tr.append('td').text(function(miner){return miner.miner_name});
     tr.append('td').text(function(miner){return d3.format('.3s')(miner.hash) +'H/s'});
     tr.append('td').text(function(miner){return local_stats.miner_dead_hash_rates[miner.miner_name] != null ? d3.format('.3s')(local_stats.miner_dead_hash_rates[miner.miner_name]) + 'H/s' : '0H/s'});
+    tr.append('td').text(function(miner){return local_stats.miner_dead_hash_rates[miner.miner_name] != null ? d3.format('.3s')(local_stats.miner_dead_hash_rates[miner.miner_name] / miner.hash * 100) + '%' : '0%'});
 
-    document.title=d3.format('.3s')(local) + 'H/s (' + d3.format('.2p')(local_dead/local) + ') | ' + local_stats.shares.total + ' shares | ' + siteTitle;
+    document.title=d3.format('.3s')(local) + 'H/s (' + d3.format('.2p')(local_dead/local) + ') | ' + local_stats.shares.total + ' shares | ' + siteTitle + ' (' + coinSymbol + ')';
   });
 
 

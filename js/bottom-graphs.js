@@ -311,9 +311,9 @@ function change_period(period, currency_info) {
   d3.json("../web/graph_data/local_share_hash_rates/last_" + lowerperiod, function(data) {
     plot(d3.select('#local_shares'), 'H/s', 'H', data_to_lines(data), true);
   });
-  plot_later(d3.select("#payout"), currency_info.symbol, null, [
-    {"url": "../web/graph_data/current_payout/last_" + lowerperiod, "color": "#00f"}
-  ]);
+  /// plot_later(d3.select("#payout"), currency_info.symbol, null, [
+  ///   {"url": "../web/graph_data/current_payout/last_" + lowerperiod, "color": "#00f"}
+  /// ]);
   d3.json("../web/graph_data/pool_rates/last_" + lowerperiod, function(data) {
     plot(d3.select('#pool'), 'H/s', 'H', data_to_lines(data), true);
   });
