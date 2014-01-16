@@ -2,7 +2,7 @@
 <html><head>
   <title>P2Pool Share</title>
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-  <script type="text/javascript" src="js/d3.v2.min.js"></script>
+  <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
 </head>
 <body>
   <p>Loading...</p>
@@ -22,12 +22,12 @@
     function reload(currency_info) {
       var share_hash = document.location.hash.substr(1);
       if(share_hash == current_hash) return;
-      d3.json('/web/share/' + share_hash, function(share) {
+      d3.json('../web/share/' + share_hash, function(share) {
         current_hash = share_hash;
         var b = d3.select('body');
         b.selectAll('*').remove();
         var h1 = b.append('h1');
-          h1.append('a').attr('href', '/static/').text('P2Pool');
+          h1.append('a').attr('href', '../static/').text('P2Pool');
           h1.append('span').text(' > Share ');
           h1.append('a').attr('href', '#' + share_hash).text(share_hash.substr(-8));
         if(share == null) {
@@ -76,7 +76,7 @@
       });
     }
     
-    d3.json('/web/currency_info', function(currency_info) {
+    d3.json('../web/currency_info', function(currency_info) {
       reload(currency_info);
       setInterval(function(){ reload(currency_info) }, 100);
     });

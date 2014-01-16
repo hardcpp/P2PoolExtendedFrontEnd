@@ -308,20 +308,18 @@ function change_period(period, currency_info) {
     {"url": "../web/graph_data/local_hash_rate/last_" + lowerperiod, "color": "#00f", "label": "Total"},
     {"url": "../web/graph_data/local_dead_hash_rate/last_" + lowerperiod, "color": "#f00", "label": "Dead"}
   ]);
-  plot_later(d3.select("#local_shares"), "H/s", "H", [
-    {"url": "../web/graph_data/local_share_hash_rate/last_" + lowerperiod, "color": "#00f", "label": "Total"},
-    //{"url": getData("../web/graph_data/local_dead_share_hash_rate/last_" + lowerperiod, "color": "f00", "label": "Dead"}
-  ]);
+  d3.json("../web/graph_data/local_share_hash_rates/last_" + lowerperiod, function(data) {
+    plot(d3.select('#local_shares'), 'H/s', 'H', data_to_lines(data), true);
+  });
   plot_later(d3.select("#payout"), currency_info.symbol, null, [
     {"url": "../web/graph_data/current_payout/last_" + lowerperiod, "color": "#00f"}
   ]);
   d3.json("../web/graph_data/pool_rates/last_" + lowerperiod, function(data) {
     plot(d3.select('#pool'), 'H/s', 'H', data_to_lines(data), true);
   });
-  plot_later(d3.select("#peers"), "", null, [
-    {"url": "../web/graph_data/outgoing_peers/last_" + lowerperiod, "color": "#f00", "label": "Outgoing"},
-    {"url": "../web/graph_data/incoming_peers/last_" + lowerperiod, "color": "#00f", "label": "Incoming"}
-  ], true);
+  d3.json("../web/graph_data/peers/last_" + lowerperiod, function(data) {
+    plot(d3.select('#peers'), '', null, data_to_lines(data, function(line){ return line.label == "incoming" }), true);
+  });
 
   d3.json("../web/graph_data/miner_hash_rates/last_" + lowerperiod, function(data) {
     d3.json("../web/graph_data/miner_dead_hash_rates/last_" + lowerperiod, function(dead_data) {
