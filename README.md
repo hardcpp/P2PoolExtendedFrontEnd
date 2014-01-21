@@ -6,17 +6,19 @@ How to install
 ====================
 Put these files in the web-static folder of your P2Pool node installation or use --recursive when cloning the p2pool repo.
 
-Edit conf/settings.js to add your contact email and pool name.
+Edit conf/settings.js:
+ - add your contact email and pool name
 
-Edit index.html to change the Litecoin-icon and Litecoin-large to the images you want (or remove them completely).
-
-Edit index.html and update the title and the menubar link with your pool name.
+Edit index.html and graphs.html:
+ - update the title and the menubar link with your pool name
+ - change the Litecoin-icon and Litecoin-large images
+ - change the favicon image
 
 Donations
 ====================
-* LTC <a href="litecoin:LeNcnU2o9MG5acmmvZvXCRPr8wXKZWzrge">LeNcnU2o9MG5acmmvZvXCRPr8wXKZWzrge</a>
-* BTC <a href="bitcoin:1QAA3d7kS1vsLBSJbYerudEpRhcsHpYkYi">1QAA3d7kS1vsLBSJbYerudEpRhcsHpYkYi</a>
-* DOGE <a href="dogecoin:DTb6E5KZaYysed2fwBhc66jRVG1jqwxxKG">DTb6E5KZaYysed2fwBhc66jRVG1jqwxxKG</a>
+* LTC [LeNcnU2o9MG5acmmvZvXCRPr8wXKZWzrge](litecoin:LeNcnU2o9MG5acmmvZvXCRPr8wXKZWzrge)
+* BTC [1QAA3d7kS1vsLBSJbYerudEpRhcsHpYkYi](bitcoin:1QAA3d7kS1vsLBSJbYerudEpRhcsHpYkYi)
+* DOGE [DTb6E5KZaYysed2fwBhc66jRVG1jqwxxKG](dogecoin:DTb6E5KZaYysed2fwBhc66jRVG1jqwxxKG)
 
 Mine P2Pool today!
 ====================
