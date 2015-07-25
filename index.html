@@ -127,7 +127,7 @@
 						.attr('style', 'color:red;border:1px solid red;padding:5px');
 						
 					var time_to_share = local_stats.attempts_to_share/local;
-					d3.select('#time_to_share').text(d3.format('.3r')(time_to_share/3600) + " hours");
+					d3.select('#time_to_share').text(d3.format('.3r')(time_to_share/3600/24) + " days");
 					d3.select('#time_to_share_minute').text(d3.format('.3r')(time_to_share / 60) + " ");
 					
 					d3.json('/global_stats', function(global_stats) {
@@ -137,7 +137,7 @@
 						
 						var time_to_block = local_stats.attempts_to_block/global_stats.pool_hash_rate;
 						d3.select('#time_to_block').text(d3.format('.3r')(time_to_block/3600) + " hours");
-						
+						d3.select('#time_to_block_minute').text(d3.format('.3r')(time_to_block/60) + " ");
 						d3.select('#expected_payout_amount').text(d3.format('.3r')(local/global_stats.pool_hash_rate*local_stats.block_value*(1-local_stats.donation_proportion)));
 										  
 										  
@@ -306,7 +306,7 @@
 							  <td><span id="block_value" class="label label-inverse"></span> <span class="symbol"></span></td>
 							  <td></td>
 							  <td><h5>Expected time to block</h5></td>
-							  <td><span id="time_to_block" class="label"></span></td>
+							  <td><span id="time_to_block" class="label"></span> (<span id="time_to_block_minute"></span> minutes)</td>
 							</tr>
 						</tbody>
 					</table>
