@@ -5,7 +5,9 @@ Extended front end web interface for p2pool
 
 How install
 ====================
-Put all these files on web-static folder of your p2pool node installation
+In your p2pool folder:
+* rm -R web-static
+* git clone https://github.com/drazisil/P2PoolExtendedFrontEnd.git web-static
 
 Configuring Price lookup:
 -------------------------
