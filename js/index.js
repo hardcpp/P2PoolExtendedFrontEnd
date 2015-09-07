@@ -1,41 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-        <title>P2Pool</title>
-        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-        <script type="text/javascript" src="d3.v2.min.js"></script>
-	    <link href="css/bootstrap.css" rel="stylesheet">
-		<link href="css/jquery.jqplot.min.css" rel="stylesheet">
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script language="javascript" type="text/javascript" src="js/jquery.jqplot.min.js"></script>
-		<script class="include" language="javascript" type="text/javascript" src="js/jqplot.pieRenderer.min.js"></script>
-	    <style>
-			body {
-				padding-top: 60px;
-			}
-			line {
-                stroke: black;
-                stroke-width: 1;
-                shape-rendering: crispEdges;
-            }
-            
-            .plotline {
-                stroke-width: 1.4;
-                fill: none;
-            }
-            
-            text {
-                font-family: Sans-serif;
-                font-size: 12px;
-            }
-	    </style>
-	    <link href="css/bootstrap-responsive.css" rel="stylesheet">
-        <script type="text/javascript">
             // based on goblin's p2pool-stats project
 			var period = "day";
+            var siteTitle = "Drazisil's P2Pool";
 
 			function LoadData()
 			{
@@ -73,7 +38,7 @@
 				    tr.append('td').text(function(block){return block.number});
 				    tr.append('td').text(function(block){return new Date(1000*block.ts).toString()});
 				    tr.append('td').append('a').text(function(block){return block.hash}).attr('href', function(block){return currency_info.block_explorer_url_prefix + block.hash});
-				    tr.append('td').append('a').text('→').attr('href', function(block){return 'share.html#' + block.share});
+				    tr.append('td').append('a').text('->').attr('href', function(block){return 'share.html#' + block.share});
 				});
 			    });
 			    
@@ -230,143 +195,9 @@
 				UpdateData();
 			}
 		}
-        </script>
-    </head>
-    <body>
 
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="brand" href="/">P2Pool pool (<span class="symbol upper"></span>)</a>
-          <div class="nav-collapse collapse">
-            <ul class="nav">
-			  <li class="active"><a href="index.html">Stats</a></li>
-			  <li><a href="graphs.html">Graph</a></li>
-              <li><a href="https://github.com/hardcpp/P2PoolExtendedFrontEnd">Contact</a></li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
-
-	<ul class="nav nav-tabs" id="myTab">
-	  	<li class="active"><a href="#stats" data-toggle="tab"><i class="icon-user"></i>&nbsp;Pool stats</a></li>
-	  	<li><a href="#shares" data-toggle="tab"><i class="icon-refresh"></i>&nbsp;Share explorer</a></li>
-	  	<li><a href="#lastblocks" data-toggle="tab"><i class="icon-list-alt"></i>&nbsp;Last blocks</a></li>
-        <li><a href="#activeminers" data-toggle="tab"><i class="icon-flag"></i> Active miners</a></li>
-		<li><a href="#mainnodepayout" data-toggle="tab"><i class="icon-download-alt"></i>&nbsp;Payout</a></li>
-	</ul>
-	<div class="tab-content">
-	  	<div class="tab-pane active" id="stats">
-			<center>
-				<div class="well" style="width:1000px">
-				<div class="navbar" style="width: 560px;">
-				  <div class="navbar-inner">
-				    <a class="brand" href="javascript:void(0)">Scale</a>
-				    <ul class="nav" id="scale_menu">
-				      <li id="scale1"><a href="javascript:ChangeCurrentPeriod('hour', 'scale1');">Hour</a></li>
-				      <li id="scale2" class="active"><a href="javascript:ChangeCurrentPeriod('day', 'scale2');">Day</a></li>
-				      <li id="scale3"><a href="javascript:ChangeCurrentPeriod('week', 'scale3');">Week</a></li>
-				      <li id="scale4"><a href="javascript:ChangeCurrentPeriod('month', 'scale4');">Month</a></li>
-				      <li id="scale5"><a href="javascript:ChangeCurrentPeriod('year', 'scale5');">Year</a></li>
-				      <li><input type="checkbox" name="autorefresh" id="autorefresh" /><label for="autorefresh">Auto-refresh</label></li>
-				    </ul>
-				  </div>
-				</div>
-				<svg id="main-local"></svg></div>
-				<br/>
-				<div class="well" style="width:1300px">
-					<table class="table table-striped" style="width: 1300px">
-						<tbody>
-							<tr>
-							  <td><h5>Local rate</h5></td>
-							  <td><span id="local_rate" class="label"></span> (<span id="local_doa"></span> DOA)</td>
-							  <td></td>
-							  <td><h5>Expected time to share</h5></td>
-							  <td><span id="time_to_share" class="label"></span> (<span id="time_to_share_minute"></span> minutes)</td>
-							</tr>
-							<tr>
-							  <td><h5>Shares</h5></td>
-							  <td><span id="shares_total" class="label"></span> total (<span id="shares_orphan" class="label label-warning"></span> orphaned, <span id="shares_dead" class="label label-warning"></span> dead) Efficiency: <span class="label label-info" id="efficiency"></span></td>
-							  <td></td>
-							  <td><h5>Payout if a block were found NOW</h5></td>
-							  <td><span id="payout_amount" class="label"></span> <span class="symbol"></span></td>
-							</tr>
-							<tr>
-							<tr>
-							  <td><h5>Pool rate</h5></td>
-							  <td><span id="pool_rate" class="label label-inverse"></span> (<span id="pool_stale"></span> DOA+orphan)</td>
-							  <td></td>
-							  <td><h5>Share difficulty</h5></td>
-							  <td><span id="difficulty" class="label label-inverse"></span></td>
-							</tr>
-							<tr>
-							  <td><h5>Node uptime</h5></td>
-							  <td><span id="uptime_days" class="label label-inverse"></span> (<span id="uptime_hours"></span> hours)</td>
-							  <td></td>
-							  <td><h5>Peers</h5></td>
-							  <td><span id="peers_out"></span> out, <span id="peers_in"></span> in</td>
-							</tr>
-							  <td><h5>Current block value</h5></td>
-							  <td><span id="block_value" class="label label-inverse"></span> <span class="symbol"></span></td>
-							  <td></td>
-							  <td><h5>Expected time to block</h5></td>
-							  <td><span id="time_to_block" class="label"></span></td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				<br/>
-				<div style="width: 1340px">
-					<div class="well" style="width:600px; float: left">
-						<h4>Local Shares</h4>
-						<div id="ShareChart" width="450" height="450"></div>
-					</div>
-					<div class="well" style="width:600px; float: right">
-						<h4>Global pool speed</h4>
-						<div id="SpeedChart" width="450" height="450"></div>
-					</div>
-				</div>
-				
-			</center>
-		</div>
-	  	<div class="tab-pane" id="shares">
-			<p>Best share: <span id="best_share"></span></p>
-			<p>Verified heads: <span id="verified_heads"></span></p>
-			<p>Heads: <span id="heads"></span></p>
-			<p>Verified tails: <span id="verified_tails"></span></p>
-			<p>Tails: <span id="tails"></span></p>
-			<p>My Shares: <span id="my_share_hashes"></span></p>
-		</div>
-	  	<div class="tab-pane" id="lastblocks">
-			<table id="blocks" class="table table-striped table-hover">
-			    <tr><th>ID</th><th>Time</th><th>Hash / Explorer link</th><th>Share</th></tr>
-			</table>
-		</div>
-        <div class="tab-pane fade" id="activeminers">
-            <table id="miners" class="table table-striped"><tbody>
-            </table>
-    </div>
-	  	<div class="tab-pane" id="mainnodepayout">
-			<table class="table table-striped table-hover" id="payouts">
-			    <tr><th>Address</th><th>Amount (<span class="symbol"></span>) </th></tr>
-			</table>
-		</div>
-	</div>
-	<div style="border-bottom: 1px solid #ddd;"></div>
-	<center>
-        <tt>P2Pool version: <span id="version"></span></tt><br/>
-		<tt>Interface by hardcpp <a href="https://github.com/hardcpp/P2PoolExtendedFrontEnd">https://github.com/hardcpp/P2PoolExtendedFrontEnd</a></tt><br/>
-		<tt>Donate if you love it (LTC LdKxw2JewLdo1atDsQ33LiCG9ZUDQ4XmPb) (BTC 1FBa12SPET7YRGHoTXyawp1EBJyFPzju31)</tt>
-	</center>
-		<br/>
-		<script type="text/javascript">
-            function compose() {
+        
+                    function compose() {
                 var funcs = arguments;
                 return function(x) {
                     for(var i = funcs.length-1; i >= 0; i--) {
@@ -650,16 +481,3 @@
                 lines.sort(function(a, b){ return sort_key(a) - sort_key(b) });
                 return lines;
             }
-            </script>    
-		<script type="text/javascript">
-        var siteTitle = "Drazisil's P2Pool";
-        
-		$(document).ready(function() {
-			LoadData();
-		  	UpdateData();
-			setInterval("AutoRefresh()", 5 * 1000);
-		    	$('#myTab a:first').tab('show');
-		});
-        </script>
-	</body>
-</html>
