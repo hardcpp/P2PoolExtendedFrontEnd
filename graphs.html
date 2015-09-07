@@ -74,6 +74,13 @@
 			</div>
 		  </div>
 		</div>
+        	<ul class="nav nav-tabs" id="myTab">
+	  	<li class="active"><a href="#node" data-toggle="tab"><i class="icon-home"></i> Node Hashrate</a></li>
+	  	<li><a href="#payouts" data-toggle="tab"><i class="icon-download-alt"></i> Payout</a></li>
+        <li><a href="#minergraphs" data-toggle="tab"><i class="icon-check"></i> Miners</a></li>
+		<li><a href="#network" data-toggle="tab"><i class="icon-refreash"></i> Network</a></li>
+		<li><a href="#system" data-toggle="tab"><i class="icon-wrench"></i> System</a></li>
+	</ul>
         <center>
 			<div class="navbar" style="width: 440px;">
 			  <div class="navbar-inner">
@@ -115,6 +122,9 @@
         <p style="display: none">Periods: <span id="period_chooser"></span> Current: <span id="period_current"></span></p>
         
         <div id="warnings"></div>
+    <div class="tab-content">
+	  	<div class="tab-pane active" id="node">
+
 		<center>
 			<div class="well" style="width:1000px"> 
 				<h2>Local rate</h2>
@@ -127,28 +137,34 @@
 			</div>
 			<br/>
 			<div class="well" style="width:1000px"> 	
-				<h2>Current payout to default address</h2>
-				<svg id="payout"></svg>
-			</div>
-			<br/>
-			<div class="well" style="width:1000px"> 	
 				<h2>Pool rate</h2>
 				<svg id="pool"></svg>
 			</div>
 			<br/>
+		</center>
+        </div>
+        <div class="tab-pane" id="payouts">
+        <center>
 			<div class="well" style="width:1000px"> 	
-				<h2>Peers</h2>
-				<svg id="peers"></svg>
+				<h2>Current payout to default address</h2>
+				<svg id="payout"></svg>
 			</div>
 			<br/>
-			<div class="well" style="width:1000px"> 	
+        </center>
+        </div>
+        <div class="tab-pane" id="minergraphs">
+        <center>
+            <div class="well" style="width:1000px"> 	
 				<h2>Miners</h2>
 				<div id="miners"></div>
 			</div>
-			<br/>
+        </center>
+        </div>
+        <div class="tab-pane" id="network">
+        <center>
 			<div class="well" style="width:1000px"> 	
-				<h2>Desired version rates</h2>
-				<svg id="desired_version_rates"></svg>
+				<h2>Peers</h2>
+				<svg id="peers"></svg>
 			</div>
 			<br/>
 			<div class="well" style="width:1000px"> 	
@@ -156,6 +172,15 @@
 				<svg id="traffic_rate"></svg>
 			</div>
 			<br/>
+			<div class="well" style="width:1000px"> 	
+				<h2>Desired version rates</h2>
+				<svg id="desired_version_rates"></svg>
+			</div>
+			<br/>
+            </center>
+        </div>
+	  	<div class="tab-pane" id="system">
+        <center>
 			<div class="well" style="width:1000px"> 	
 				<h2>Bitcoind GetBlockTemplate Latency</h2>
 				<svg id="getwork_latency"></svg>
@@ -165,14 +190,17 @@
 				<h2>Memory Usage</h2>
 				<svg id="memory_usage"></svg>
 			</div>
-		</center>
+            </center>
+        </div>
+        <!-- Page-wide footer -->
         <div style="border-bottom: 1px solid #ddd;"></div>
             <center>
 		        <tt>P2Pool version: <span id="version"></span></tt><br/>
                 <tt>Interface by hardcpp (fixes and price by drazisil) <a href="https://github.com/hardcpp/P2PoolExtendedFrontEnd">https://github.com/hardcpp/P2PoolExtendedFrontEnd</a></tt><br/>
                 <tt>Donate if you love it (LTC LdKxw2JewLdo1atDsQ33LiCG9ZUDQ4XmPb) (BTC 1FBa12SPET7YRGHoTXyawp1EBJyFPzju31)</tt><br>
                 <tt>BTC to USD Price from <a href="https://bitpay.com/api" title="BitPay Api">BitPay.com</a></tt>
-        </center>
+            </center>
+        </div>
         <script type="text/javascript">
         
             function LoadData() {
