@@ -1,40 +1,3 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-        <title>P2Pool - Graphs</title>
-        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-        <script type="text/javascript" src="d3.v2.min.js"></script>
-	    <link href="css/bootstrap.css" rel="stylesheet">
-		<link href="css/jquery.jqplot.min.css" rel="stylesheet">
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script language="javascript" type="text/javascript" src="js/jquery.jqplot.min.js"></script>
-		<script class="include" language="javascript" type="text/javascript" src="js/jqplot.pieRenderer.min.js"></script>
-	    <style>
-			body {
-				padding-top: 60px;
-			}
-			line {
-                stroke: black;
-                stroke-width: 1;
-                shape-rendering: crispEdges;
-            }
-            
-            .plotline {
-                stroke-width: 1.4;
-                fill: none;
-            }
-            
-            text {
-                font-family: Sans-serif;
-                font-size: 12px;
-            }
-	    </style>
-	    <link href="css/bootstrap-responsive.css" rel="stylesheet">
-		
-		<script>
             function ChangeCurrency(c_Currency, c_Sender)
 			{
 				currency=c_Currency;
@@ -51,54 +14,7 @@
 				$('#' + p_Sender).addClass('active');
 				document.location.href =  "?" + period + "/" + currency;
 			}
-        </script>
-    </head>
-    
-    <body>
-		<div class="navbar navbar-inverse navbar-fixed-top">
-		  <div class="navbar-inner">
-			<div class="container">
-			  <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			  </button>
-			  <a class="brand" href="/">P2Pool pool (<span class="symbol upper"></span>)</a>
-			  <div class="nav-collapse collapse">
-				<ul class="nav">
-				  <li><a href="index.html">Stats</a></li>
-				  <li class="active"><a href="graphs.html">Graph</a></li>
-				  <li><a href="https://github.com/hardcpp/P2PoolExtendedFrontEnd">Contact</a></li>
-				</ul>
-			  </div><!--/.nav-collapse -->
-			</div>
-		  </div>
-		</div>
-        <center>
-			<div class="navbar" style="width: 440px;">
-			  <div class="navbar-inner">
-				<a class="brand" href="javascript:void(0)">Scale</a>
-				<ul class="nav" id="scale_menu">
-				  <li id="scaleHour"class="active"><a href="javascript:ChangeCurrentPeriod('Hour', 'scaleHour');">Hour</a></li>
-				  <li id="scaleDay"><a href="javascript:ChangeCurrentPeriod('Day', 'scaleDay');">Day</a></li>
-				  <li id="scaleWeek"><a href="javascript:ChangeCurrentPeriod('Week', 'scaleWeek');">Week</a></li>
-				  <li id="scaleMonth"><a href="javascript:ChangeCurrentPeriod('Month', 'scaleMonth');">Month</a></li>
-				  <li id="scaleYear"><a href="javascript:ChangeCurrentPeriod('Year', 'scaleYear');">Year</a></li>
-				</ul>
-			  </div>
-			</div>
-            Currency <div class="btn-group">
-                <button id="cur_currency" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    USD <span class="caret"></span>
-                </button>
-                <ul id="currency_dd" class="dropdown-menu" on >
-                    <li><a href="javascript:ChangeCurrency('USD', 'currencyUSD');">US Dollar</a></li>
-                </ul>
-            </div> 
-            <span id="err_currency"></span>
 
-		</center>
-        <script>
             keys = window.location.search.substr(1).split("/");
         
 			period = keys[0];
@@ -111,70 +27,8 @@
             d3.json('/web/currency_info', function(currency_info) {
 				d3.selectAll('.symbol').text(currency_info.symbol);
 			});
-		</script>
-        <p style="display: none">Periods: <span id="period_chooser"></span> Current: <span id="period_current"></span></p>
-        
-        <div id="warnings"></div>
-		<center>
-			<div class="well" style="width:1000px"> 
-				<h2>Local rate</h2>
-				<svg id="local"></svg>
-			</div>
-			<br/>
-			<div class="well" style="width:1000px"> 	
-				<h2>Local rate reflected in shares</h2>
-				<svg id="local_shares"></svg>
-			</div>
-			<br/>
-			<div class="well" style="width:1000px"> 	
-				<h2>Current payout to default address</h2>
-				<svg id="payout"></svg>
-			</div>
-			<br/>
-			<div class="well" style="width:1000px"> 	
-				<h2>Pool rate</h2>
-				<svg id="pool"></svg>
-			</div>
-			<br/>
-			<div class="well" style="width:1000px"> 	
-				<h2>Peers</h2>
-				<svg id="peers"></svg>
-			</div>
-			<br/>
-			<div class="well" style="width:1000px"> 	
-				<h2>Miners</h2>
-				<div id="miners"></div>
-			</div>
-			<br/>
-			<div class="well" style="width:1000px"> 	
-				<h2>Desired version rates</h2>
-				<svg id="desired_version_rates"></svg>
-			</div>
-			<br/>
-			<div class="well" style="width:1000px"> 	
-				<h2>Traffic rate</h2>
-				<svg id="traffic_rate"></svg>
-			</div>
-			<br/>
-			<div class="well" style="width:1000px"> 	
-				<h2>Bitcoind GetBlockTemplate Latency</h2>
-				<svg id="getwork_latency"></svg>
-			</div>
-			<br/>
-			<div class="well" style="width:1000px"> 	
-				<h2>Memory Usage</h2>
-				<svg id="memory_usage"></svg>
-			</div>
-		</center>
-        <div style="border-bottom: 1px solid #ddd;"></div>
-            <center>
-		        <tt>P2Pool version: <span id="version"></span></tt><br/>
-                <tt>Interface by hardcpp (fixes and price by drazisil) <a href="https://github.com/hardcpp/P2PoolExtendedFrontEnd">https://github.com/hardcpp/P2PoolExtendedFrontEnd</a></tt><br/>
-                <tt>Donate if you love it (LTC LdKxw2JewLdo1atDsQ33LiCG9ZUDQ4XmPb) (BTC 1FBa12SPET7YRGHoTXyawp1EBJyFPzju31)</tt><br>
-                <tt>BTC to USD Price from <a href="https://bitpay.com/api" title="BitPay Api">BitPay.com</a></tt>
-        </center>
-        <script type="text/javascript">
-        
+
+                    
             function LoadData() {
                 d3.json('/web/version', function(version) {
 					d3.selectAll('#version').text(version);
@@ -598,19 +452,3 @@
                     linka.text(currency.desc);
                 })
             }
-        </script>
-        <script type="text/javascript">
-        var price = '0.00';
-        
-        // This is where you add other currencies
-        var currencies = [
-            {name: "USD", desc: "US Dollar"},
-            {name: "EUR", desc: "Euro"},
-        ];
-
-		$(document).ready(function() {
-			LoadData();
-		});
-        </script>
-    </body>
-</html>
